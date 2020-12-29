@@ -5,6 +5,8 @@ const TextInput = (props) => {
         <label>
             {props.label}: {props.required && <div className="required-label">*required</div>} <br />
             <input 
+                className={props.className ? props.className : ''}
+                id={props.id ? props.id : ''}
                 type="text" 
                 name={props.name}
                 value={props.value} 

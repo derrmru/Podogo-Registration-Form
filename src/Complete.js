@@ -13,10 +13,10 @@ let Complete = () => {
                 If you have any questions regarding your appointment please get in touch:
                 <br />
                 <br />
-                <strong>Telephone:</strong> 0207 820 8007
+                <strong>Telephone:</strong> 0207 412 8882
                 <br />
                 <br />
-                <strong>Email:</strong> admin@londonfootandanklesurgery.co.uk
+                <strong>Email:</strong> admin@podogo.com
             </div>
 
         </div>

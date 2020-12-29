@@ -167,35 +167,42 @@ let Personal = (props) => {
           <br />
         </label>
 
-        <label>
-          Address: <div className="required-label">*required</div> <br />
-          <input id="autocomplete" type="text" name="addressName" value={addressName} onChange={e => setAddressName(e.target.value)} />
-          <br />
-        </label>
+        <TextInput 
+          id="autocomplete"
+          label="Address"
+          required={true}
+          name="addressName"
+          value={addressName}
+          setValue={() => setAddressName()}
+          />
 
         {addressCountry !== "" ?
         <>
         <div className="address-details">
-          <label>
-            Street: <br />
-            <input className="address-part" type="text" value={addressStreet} onChange={e => setAddressStreet(e.target.value)} />
-            <br />
-          </label>
-          <label>
-            City: <br />
-            <input className="address-part" type="text" onChange={e => setAddressCity(e.target.value)}  value={addressCity} />
-            <br />
-          </label>
-          <label>
-            Country: <br />
-            <input className="address-part" type="text" onChange={e => setAddressCountry(e.target.value)}  value={addressCountry} />
-            <br />
-          </label>
-          <label>
-            Post/Zip Code: <br />
-            <input className="address-part" type="text" onChange={e => setAddressPost(e.target.value)}  value={addressPost} />
-            <br />
-          </label>
+          <TextInput 
+            className="address-part"
+            label="Street"
+            value={addressStreet}
+            setValue={() => setAddressStreet()}
+            />
+          <TextInput 
+            className="address-part"
+            label="City"
+            value={addressCity}
+            setValue={() => setAddressCity()}
+            />
+          <TextInput 
+            className="address-part"
+            label="Country"
+            value={addressCountry}
+            setValue={() => setAddressCountry()}
+            />
+          <TextInput 
+            className="address-part"
+            label="Post/Zip Code"
+            value={addressPost}
+            setValue={() => setAddressPost()}
+            />
         </div>
         </>
         :
@@ -220,35 +227,42 @@ let Personal = (props) => {
           placeholder="e.g. example@example.com"
           />
 
-        <label>
-          GP Address: <div style={{fontSize: "11px", float: "right", marginRight: "20px"}}>Enter 'N/A' if you do not have a GP</div> <br />
-          <input id="GP" type="text" name="GPName" value={GPName} onChange={e => setGPName(e.target.value)} />
-          <br />
-        </label>
+        <div style={{fontSize: "11px", float: "right", marginRight: "20px"}}>Enter 'N/A' if you do not have a GP</div>
+        <TextInput 
+          id="GP"
+          label="GP Address"
+          name="GPName"
+          value={GPName}
+          setValue={() => setGPName()}
+          /> 
 
-              {GPName !== "" && GPStreet !== "" && GPPost !== "" ?
-              <>
-              <div className="address-details">
-                <label>
-                  Street: <br />
-                  <input className="address-part" type="text" onChange={e => setGPStreet(e.target.value)} value={GPStreet} />
-                  <br />
-                </label>
-                <label>
-                  City: <br />
-                  <input className="address-part" type="text" onChange={e => setGPCity(e.target.value)} value={GPCity} />
-                  <br />
-                </label>
-                <label>
-                  Country: <br />
-                  <input className="address-part" type="text" onChange={e => setGPCountry(e.target.value)} value={GPCountry} />
-                  <br />
-                </label>
-                <label>
-                  Post/Zip Code: <br />
-                  <input className="address-part" type="text" onChange={e => setGPPost(e.target.value)} value={GPPost} />
-                  <br />
-                </label>
+        {GPName !== "" && GPStreet !== "" && GPPost !== "" ?
+          <>
+          <div className="address-details">
+                <TextInput 
+                  className="address-part"
+                  label="Street"
+                  value={GPStreet}
+                  setValue={() => setGPStreet()}
+                  />
+                <TextInput 
+                  className="address-part"
+                  label="City"
+                  value={GPCity}
+                  setValue={() => setGPCity()}
+                  />
+                <TextInput 
+                  className="address-part"
+                  label="Country"
+                  value={GPCountry}
+                  setValue={() => setGPCountry()}
+                  />
+                <TextInput 
+                  className="address-part"
+                  label="Post/Zip Code"
+                  value={GPPost}
+                  setValue={() => setGPPost()}
+                  />
               </div>
               </>
               :
@@ -298,7 +312,7 @@ let Personal = (props) => {
           <></>
         }
       </form>
-  <button onClick={onClick}>next</button>
+      <button onClick={onClick}>next</button>
 
       </div>
     </div>
