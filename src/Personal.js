@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import TextInput from './components/TextInput/TextInput';
 import './App.css';
 
 let Personal = (props) => {
@@ -33,21 +34,20 @@ let Personal = (props) => {
       autocomplete.setFields(['address_component']);
 
       for (let i = 0; i < address.length; i++){
-	if (address[i].types[0] === 'country'){
-	  setAddressCountry(address[i].long_name)
-	} else if (address[i].types[0] === 'route'){
-	  setAddressStreet(address[i].long_name)
-	} else if (address[i].types[0] === 'administrative_area_level_2'){
-	  setAddressCity(address[i].long_name)
-	} else if (address[i].types.indexOf('postal_code') >= 0){
-	  setAddressPost(address[i].long_name)
-	} else if (address[i].types.indexOf('street_number') >= 0){
-	  setAddressName(address[i].long_name)
-	} else if (address[i].types.indexOf('locality') >= 0){
-	  setAddressCity(address[i].long_name)
-	}
+        if (address[i].types[0] === 'country'){
+          setAddressCountry(address[i].long_name)
+        } else if (address[i].types[0] === 'route'){
+          setAddressStreet(address[i].long_name)
+        } else if (address[i].types[0] === 'administrative_area_level_2'){
+          setAddressCity(address[i].long_name)
+        } else if (address[i].types.indexOf('postal_code') >= 0){
+          setAddressPost(address[i].long_name)
+        } else if (address[i].types.indexOf('street_number') >= 0){
+          setAddressName(address[i].long_name)
+        } else if (address[i].types.indexOf('locality') >= 0){
+          setAddressCity(address[i].long_name)
+        }
       }
-
     }
 
     let autoGP = null;
@@ -143,17 +143,23 @@ let Personal = (props) => {
       <div>If any fields are not relevant, please use 'N/A'</div>
       <hr />
       <form className="reg-form">
-        <label>
-          First Name: <div className="required-label">*required</div> <br />
-          <input type="text" name="firstName" value={firstName}  onChange={e => setFirstName(e.target.value)} placeholder="e.g. John" />
-          <br />
-        </label>
+        <TextInput 
+          label="First Name"
+          required={true}
+          name="firstName"
+          value={firstName}
+          setValue={() => setFirstName()}
+          placeholder="e.g. John"
+          />
 
-        <label>
-                Last Name: <div className="required-label">*required</div> <br />
-                <input type="text" name="lastName" value={lastName}  onChange={e => setLastName(e.target.value)} placeholder="e.g. Smith" />
-          <br />
-              </label>
+        <TextInput 
+          label="Last Name"
+          required={true}
+          name="lastName"
+          value={lastName}
+          setValue={() => setLastName()}
+          placeholder="e.g. Smith"
+          />
 
         <label>
           Date of Birth: <div className="required-label">*required</div> <br />
@@ -195,23 +201,30 @@ let Personal = (props) => {
         :
         <></>}
 
-        <label>
-          Contact Number: <div className="required-label">*required</div> <br />
-          <input type="text" name="tel" value={tel} onChange={e => setTel(e.target.value)} placeholder="e.g. +44 7512 345 678" />
-          <br />
-        </label>
+
+        <TextInput 
+          label="Contact Number"
+          required={true}
+          name="tel"
+          value={tel}
+          setValue={() => setTel()}
+          placeholder="e.g. +44 7512 345 678"
+          />
+
+        <TextInput 
+          label="Email Address"
+          required={true}
+          name="email"
+          value={email}
+          setValue={() => setEmail()}
+          placeholder="e.g. example@example.com"
+          />
 
         <label>
-          Email Address: <div className="required-label">*required</div> <br />
-          <input type="email" name="email" value={email}  onChange={e => setEmail(e.target.value)} placeholder="e.g. example@example.com" />
+          GP Address: <div style={{fontSize: "11px", float: "right", marginRight: "20px"}}>Enter 'N/A' if you do not have a GP</div> <br />
+          <input id="GP" type="text" name="GPName" value={GPName} onChange={e => setGPName(e.target.value)} />
           <br />
         </label>
-
-        <label>
-                GP Address: <div style={{fontSize: "11px", float: "right", marginRight: "20px"}}>Enter 'N/A' if you do not have a GP</div> <br />
-                <input id="GP" type="text" name="GPName" value={GPName} onChange={e => setGPName(e.target.value)} />
-                <br />
-              </label>
 
               {GPName !== "" && GPStreet !== "" && GPPost !== "" ?
               <>
@@ -247,7 +260,7 @@ let Personal = (props) => {
                     <option value="" disabled defaultValue>-Select a method of payment-</option>
                     <option value="Self-funding">Self-funding</option>
                     <option value="aetna">Aetna</option>
-                    <option value="cigna">Allianz</option>
+                    <option value="allianz">Allianz</option>
                     <option value="bupa">Bupa</option>
                     <option value="aviva">Aviva</option>
                     <option value="axa-ppp">AXA PPP</option>
@@ -266,17 +279,19 @@ let Personal = (props) => {
         {insurer !== "" && insurer !== 'Self-funding' ?
           <>
           <hr />
-          <label>
-            Membership / Policy Number: <br />
-            <input type="text" value={membership} onChange={e => setMembership(e.target.value)} required />
-            <br />
-          </label>
+          <TextInput 
+            label="Membership / Policy Number"
+            required={false}
+            value={membership}
+            setValue={() => setMembership()}
+            />
 
-          <label>
-                  Authorisation Number: <br />
-                  <input type="text" value={auth} onChange={e => setAuth(e.target.value)} />
-                  <br />
-                </label>
+          <TextInput 
+            label="Authorisation Number"
+            required={false}
+            value={auth}
+            setValue={() => setAuth()}
+            />
           <hr />
           </>
           :
