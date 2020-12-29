@@ -258,6 +258,7 @@ let Personal = (props) => {
                     <option value="healix">Healix</option>
                     <option value="simply-health">Simply Health</option>
                     <option value="vitality">Vitality</option>
+                    <option value="wpa">WPA</option>
               </select>
         <br />
         </label>
