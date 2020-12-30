@@ -148,7 +148,7 @@ let Personal = (props) => {
           required={true}
           name="firstName"
           value={firstName}
-          setValue={() => setFirstName()}
+          setValue={(name) => setFirstName(name)}
           placeholder="e.g. John"
           />
 
@@ -157,7 +157,7 @@ let Personal = (props) => {
           required={true}
           name="lastName"
           value={lastName}
-          setValue={() => setLastName()}
+          setValue={(last) => setLastName(last)}
           placeholder="e.g. Smith"
           />
 
@@ -173,7 +173,7 @@ let Personal = (props) => {
           required={true}
           name="addressName"
           value={addressName}
-          setValue={() => setAddressName()}
+          setValue={(an) => setAddressName(an)}
           />
 
         {addressCountry !== "" ?
@@ -183,25 +183,25 @@ let Personal = (props) => {
             className="address-part"
             label="Street"
             value={addressStreet}
-            setValue={() => setAddressStreet()}
+            setValue={(as) => setAddressStreet(as)}
             />
           <TextInput 
             className="address-part"
             label="City"
             value={addressCity}
-            setValue={() => setAddressCity()}
+            setValue={(ac) => setAddressCity(ac)}
             />
           <TextInput 
             className="address-part"
             label="Country"
             value={addressCountry}
-            setValue={() => setAddressCountry()}
+            setValue={(adc) => setAddressCountry(adc)}
             />
           <TextInput 
             className="address-part"
             label="Post/Zip Code"
             value={addressPost}
-            setValue={() => setAddressPost()}
+            setValue={(ap) => setAddressPost(ap)}
             />
         </div>
         </>
@@ -214,7 +214,7 @@ let Personal = (props) => {
           required={true}
           name="tel"
           value={tel}
-          setValue={() => setTel()}
+          setValue={(t) => setTel(t)}
           placeholder="e.g. +44 7512 345 678"
           />
 
@@ -223,7 +223,7 @@ let Personal = (props) => {
           required={true}
           name="email"
           value={email}
-          setValue={() => setEmail()}
+          setValue={(x) => setEmail(x)}
           placeholder="e.g. example@example.com"
           />
 
@@ -233,7 +233,7 @@ let Personal = (props) => {
           label="GP Address"
           name="GPName"
           value={GPName}
-          setValue={() => setGPName()}
+          setValue={(x) => setGPName(x)}
           /> 
 
         {GPName !== "" && GPStreet !== "" && GPPost !== "" ?
@@ -243,25 +243,25 @@ let Personal = (props) => {
                   className="address-part"
                   label="Street"
                   value={GPStreet}
-                  setValue={() => setGPStreet()}
+                  setValue={(x) => setGPStreet(x)}
                   />
                 <TextInput 
                   className="address-part"
                   label="City"
                   value={GPCity}
-                  setValue={() => setGPCity()}
+                  setValue={(x) => setGPCity(x)}
                   />
                 <TextInput 
                   className="address-part"
                   label="Country"
                   value={GPCountry}
-                  setValue={() => setGPCountry()}
+                  setValue={(x) => setGPCountry(x)}
                   />
                 <TextInput 
                   className="address-part"
                   label="Post/Zip Code"
                   value={GPPost}
-                  setValue={() => setGPPost()}
+                  setValue={(x) => setGPPost(x)}
                   />
               </div>
               </>
@@ -297,14 +297,14 @@ let Personal = (props) => {
             label="Membership / Policy Number"
             required={false}
             value={membership}
-            setValue={() => setMembership()}
+            setValue={(x) => setMembership(x)}
             />
 
           <TextInput 
             label="Authorisation Number"
             required={false}
             value={auth}
-            setValue={() => setAuth()}
+            setValue={(x) => setAuth(x)}
             />
           <hr />
           </>

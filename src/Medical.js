@@ -77,7 +77,7 @@ let Medical = (props) => {
                 required={true}
                 name="conditions"
                 value={conditions}
-                setValue={() => setConditions()}
+                setValue={(x) => setConditions(x)}
                 placeholder="e.g. gout"
                 />
 
@@ -86,7 +86,7 @@ let Medical = (props) => {
                 required={true}
                 name="medicines"
                 value={medicines}
-                setValue={() => setMedicines()}
+                setValue={(x) => setMedicines(x)}
                 placeholder="e.g. painkillers"
                 />
 
@@ -95,7 +95,7 @@ let Medical = (props) => {
                 required={true}
                 name="operations"
                 value={operations}
-                setValue={() => setOperations()}
+                setValue={(x) => setOperations(x)}
                 placeholder="e.g. ACL Repair"
                 />
 
@@ -104,7 +104,7 @@ let Medical = (props) => {
                 required={true}
                 name="allergies"
                 value={allergies}
-                setValue={() => setAllergies()}
+                setValue={(x) => setAllergies(x)}
                 placeholder="e.g. penicillin"
                 />
 
@@ -127,7 +127,7 @@ let Medical = (props) => {
                     label="How many cigarettes per day"
                     name="smokesPerDay"
                     value={smokesPerDay}
-                    setValue={() => setSmokesPerDay()}
+                    setValue={(x) => setSmokesPerDay(x)}
                     placeholder="e.g. 3"
                     />
             }
@@ -137,7 +137,7 @@ let Medical = (props) => {
                 required={true}
                 name="alcohol"
                 value={alcohol}
-                setValue={() => setAlcohol()}
+                setValue={(x) => setAlcohol(x)}
                 placeholder="e.g. 4"
                 />
 
@@ -146,7 +146,7 @@ let Medical = (props) => {
                 required={true}
                 name="occupation"
                 value={occupation}
-                setValue={() => setOccupation()}
+                setValue={(x) => setOccupation(x)}
                 />
 
             <TextInput 
@@ -154,7 +154,7 @@ let Medical = (props) => {
                 required={true}
                 name="weight"
                 value={weight}
-                setValue={() => setWeight()}
+                setValue={(x) => setWeight(x)}
                 placeholder="e.g. 80kg"
                 />
 
@@ -163,7 +163,7 @@ let Medical = (props) => {
                 required={true}
                 name="height"
                 value={height}
-                setValue={() => setHeight()}
+                setValue={(x) => setHeight(x)}
                 placeholder="e.g. 5ft 10in"
                 />
 
@@ -172,7 +172,7 @@ let Medical = (props) => {
                 required={true}
                 name="shoeSize"
                 value={shoeSize}
-                setValue={() => setShoeSize()}
+                setValue={(x) => setShoeSize(x)}
                 placeholder="e.g. 9 UK"
                 />
 
@@ -181,7 +181,7 @@ let Medical = (props) => {
                 required={true}
                 name="sports"
                 value={sports}
-                setValue={() => setSports()}
+                setValue={(x) => setSports(x)}
                 placeholder="e.g. badminton"
                 />
 
