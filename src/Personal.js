@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import TextInput from './components/TextInput/TextInput';
 import './App.css';
 
-let Personal = (props) => {
+const Personal = (props) => {
   const [firstName, setFirstName] = useState(props.fields.firstName);
   const [lastName, setLastName] = useState(props.fields.lastName);
   const [dob, setDOB] = useState(props.fields.dob);
