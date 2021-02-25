@@ -58,7 +58,7 @@ let Submit = (props) => {
         //attach signature image to payload
         ff.signature = sigPad.current.getSignaturePad().toDataURL('image/png')
 
-        $.post("https://script.google.com/macros/s/AKfycbzSVsHaGRro58FTrUfwq6jPDSJ9COn8riuLaNI_fg9BHmuMmzcDb3WP/exec",
+        $.post(process.env.REACT_APP_SUBMIT,
             ff,
             function(res, status)   {
                 console.log(res);
