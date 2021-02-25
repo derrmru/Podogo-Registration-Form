@@ -7,21 +7,14 @@ import Complete from './Complete';
 function App() {
   const [stage, setStage] = useState("personal");
   const [fields, setFields] = useState({//initial Fields variable state:
+    title: "",
     firstName: "",
     lastName: "",
     dob: "",
     addressName: "",
-    addressStreet: "",
-    addressCity: "",
-    addressCountry: "",
-    addressPost: "",
     tel: "",
     email: "",
     GPName: "",
-    GPStreet: "",
-    GPCity: "",
-    GPCountry: "",
-    GPPost: "",
     insurer: "",
     auth: "",
     membership: ""

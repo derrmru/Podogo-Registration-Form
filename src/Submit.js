@@ -50,6 +50,11 @@ let Submit = (props) => {
         //toggle loading icon while submitting data to web app
         setLoading(true);
 
+        //data validation prior to submit
+        ff.dob = ff.dob.split('-').reverse().join('.')
+        ff.firstName = ff.firstName[0].toUpperCase() + ff.firstName.slice(1).toLowerCase()
+        ff.lastName = ff.lastName[0].toUpperCase() + ff.lastName.slice(1).toLowerCase()
+
         //attach signature image to payload
         ff.signature = sigPad.current.getSignaturePad().toDataURL('image/png')
 

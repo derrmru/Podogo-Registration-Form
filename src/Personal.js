@@ -3,21 +3,14 @@ import TextInput from './components/TextInput/TextInput';
 import './App.css';
 
 const Personal = (props) => {
+  const [title, setTitle] = useState(props.fields.title);
   const [firstName, setFirstName] = useState(props.fields.firstName);
   const [lastName, setLastName] = useState(props.fields.lastName);
   const [dob, setDOB] = useState(props.fields.dob);
   const [addressName, setAddressName] = useState(props.fields.addressName);
-  const [addressStreet, setAddressStreet] = useState(props.fields.addressStreet);
-  const [addressCity, setAddressCity] = useState(props.fields.addressCity);
-  const [addressCountry, setAddressCountry] = useState(props.fields.addressPost);
-  const [addressPost, setAddressPost] = useState(props.fields.addressPost);
   const [tel, setTel] = useState(props.fields.tel);
   const [email, setEmail] = useState(props.fields.email);
   const [GPName, setGPName] = useState(props.fields.GPName);
-  const [GPStreet, setGPStreet] = useState(props.fields.GPStreet);
-  const [GPCity, setGPCity] = useState(props.fields.GPCity);
-  const [GPCountry, setGPCountry] = useState(props.fields.GPCountry);
-  const [GPPost, setGPPost] = useState(props.fields.GPPost);
   const [insurer, setInsurer] = useState(props.fields.insurer);
   const [auth, setAuth] = useState(props.fields.auth);
   const [membership, setMembership] = useState(props.fields.membership);
@@ -33,21 +26,14 @@ const Personal = (props) => {
 
       autocomplete.setFields(['address_component']);
 
-      for (let i = 0; i < address.length; i++){
-        if (address[i].types[0] === 'country'){
-          setAddressCountry(address[i].long_name)
-        } else if (address[i].types[0] === 'route'){
-          setAddressStreet(address[i].long_name)
-        } else if (address[i].types[0] === 'administrative_area_level_2'){
-          setAddressCity(address[i].long_name)
-        } else if (address[i].types.indexOf('postal_code') >= 0){
-          setAddressPost(address[i].long_name)
-        } else if (address[i].types.indexOf('street_number') >= 0){
-          setAddressName(address[i].long_name)
-        } else if (address[i].types.indexOf('locality') >= 0){
-          setAddressCity(address[i].long_name)
-        }
-      }
+      setAddressName(address.filter((current) => {
+        return current.long_name !== 'United Kingdom' && 
+        current.long_name !== 'Greater London' &&
+        current.long_name !== 'England'
+      }).reduce((string, cur) => {
+        string.push(cur.long_name);
+        return string;
+      }, []).join(', '))
     }
 
     let autoGP = null;
@@ -57,21 +43,14 @@ const Personal = (props) => {
       let addressObject = autoGP.getPlace();
       let address = addressObject.address_components;
 
-      for (let i = 0; i < address.length; i++){
-        if (address[i].types[0] === 'country'){
-          setGPCountry(address[i].long_name)
-        } else if (address[i].types[0] === 'route'){
-          setGPStreet(address[i].long_name)
-        } else if (address[i].types[0] === 'administrative_area_level_2'){
-          setGPCity(address[i].long_name)
-        } else if (address[i].types.indexOf('postal_code') >= 0){
-          setGPPost(address[i].long_name)
-        } else if (address[i].types.indexOf('street_number') >= 0){
-          setGPName(address[i].long_name)
-        } else if (address[i].types.indexOf('locality') >= 0){
-          setGPCity(address[i].long_name)
-        }
-      }
+      setGPName(address.filter((current) => {
+        return current.long_name !== 'United Kingdom' && 
+        current.long_name !== 'Greater London' &&
+        current.long_name !== 'England'
+      }).reduce((string, cur) => {
+        string.push(cur.long_name);
+        return string;
+      }, []).join(', '))  
 
     }
 
@@ -82,21 +61,14 @@ const Personal = (props) => {
 
   let onClick = () => {
     let thisForm = {
+      title: title,
       firstName: firstName,
       lastName: lastName,
       dob: dob,
       addressName: addressName,
-      addressStreet: addressStreet,
-      addressCity: addressCity,
-      addressCountry: addressCountry,
-      addressPost: addressPost,
       tel: tel,
       email: email,
       GPName: GPName,
-      GPStreet: GPStreet,
-      GPCity: GPCity,
-      GPCountry: GPCountry,
-      GPPost: GPPost,
       insurer: insurer,
       auth: auth,
       membership: membership
@@ -111,6 +83,7 @@ const Personal = (props) => {
     //Form Validation
     let forms = document.forms[0];
     let requiredFields = [
+      "title",
       "firstName", 
       "lastName", 
       "dob", 
@@ -143,6 +116,22 @@ const Personal = (props) => {
       <div>If any fields are not relevant, please use 'N/A'</div>
       <hr />
       <form className="reg-form">
+        <label>
+          Title: <div className="required-label">*required</div> <br />
+          <select name="title" value={title} onChange={e => setTitle(e.target.value)} required>
+            <option value="" disabled defaultValue>-Select-</option>
+            <option value="Mr">Mr</option>
+            <option value="Ms">Ms</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Master">Master</option>
+            <option value="Dr">Dr</option>
+            <option value="Lord">Lord</option>
+            <option value="Sir">Sir</option>
+          </select>
+        <br />
+        </label>
+
         <TextInput 
           label="First Name"
           required={true}
@@ -176,39 +165,6 @@ const Personal = (props) => {
           setValue={(an) => setAddressName(an)}
           />
 
-        {addressCountry !== "" ?
-        <>
-        <div className="address-details">
-          <TextInput 
-            className="address-part"
-            label="Street"
-            value={addressStreet}
-            setValue={(as) => setAddressStreet(as)}
-            />
-          <TextInput 
-            className="address-part"
-            label="City"
-            value={addressCity}
-            setValue={(ac) => setAddressCity(ac)}
-            />
-          <TextInput 
-            className="address-part"
-            label="Country"
-            value={addressCountry}
-            setValue={(adc) => setAddressCountry(adc)}
-            />
-          <TextInput 
-            className="address-part"
-            label="Post/Zip Code"
-            value={addressPost}
-            setValue={(ap) => setAddressPost(ap)}
-            />
-        </div>
-        </>
-        :
-        <></>}
-
-
         <TextInput 
           label="Contact Number"
           required={true}
@@ -235,38 +191,6 @@ const Personal = (props) => {
           value={GPName}
           setValue={(x) => setGPName(x)}
           /> 
-
-        {GPName !== "" && GPStreet !== "" && GPPost !== "" ?
-          <>
-          <div className="address-details">
-                <TextInput 
-                  className="address-part"
-                  label="Street"
-                  value={GPStreet}
-                  setValue={(x) => setGPStreet(x)}
-                  />
-                <TextInput 
-                  className="address-part"
-                  label="City"
-                  value={GPCity}
-                  setValue={(x) => setGPCity(x)}
-                  />
-                <TextInput 
-                  className="address-part"
-                  label="Country"
-                  value={GPCountry}
-                  setValue={(x) => setGPCountry(x)}
-                  />
-                <TextInput 
-                  className="address-part"
-                  label="Post/Zip Code"
-                  value={GPPost}
-                  setValue={(x) => setGPPost(x)}
-                  />
-              </div>
-              </>
-              :
-              <></>}
 
         <label>
         Method of Payment: <div className="required-label">*required</div> <br />

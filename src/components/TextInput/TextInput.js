@@ -9,7 +9,7 @@ const TextInput = (props) => {
                 id={props.id ? props.id : ''}
                 type="text" 
                 name={props.name}
-                value={props.value} 
+                value={props.value || ''} 
                 onChange={e => props.setValue(e.target.value)} 
                 placeholder={props.placeholder} 
                 />
